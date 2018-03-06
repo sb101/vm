@@ -27,10 +27,13 @@ public class VotingMachineImplTest {
         subject.recordVote("test2");
         List<CandidateVote> post = subject.getVotes();
         assertNotNull(post);
-        assertEquals("test", post.get(0).getCandidate());
-        assertEquals(Integer.valueOf(2), post.get(0).getNumberOfVotes());
-        assertEquals("test2", post.get(1).getCandidate());
-        assertEquals(Integer.valueOf(1), post.get(1).getNumberOfVotes());
+        for (CandidateVote c: post) {
+            if(c.getCandidate().equals("test")){
+                assertEquals(c.getNumberOfVotes().intValue(),2);
+            }else if (c.getCandidate().equals("test2")) {
+                assertEquals(c.getNumberOfVotes().intValue(),1);
+            }
+        }
 
     }
 
